@@ -22,4 +22,13 @@ public class Conexion {
         return dataSource;
     }
     
+    public DriverManagerDataSource conectarEsp( String url, String username, String password){
+        DriverManagerDataSource dataSource= new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl(url);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
+    
 }

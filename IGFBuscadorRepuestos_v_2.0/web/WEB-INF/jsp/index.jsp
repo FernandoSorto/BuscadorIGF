@@ -21,6 +21,8 @@
                 
                 <span class="navbar-text mr-sm-2 text-muted">Quieres registrar tus repuestos?</span>
                 <a class="btn btn-outline-success my-2 my-sm-0" href="registrarse.htm">click aca!</a>
+                <span class="navbar-text mr-sm-2 text-muted">&nbsp o </span>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="iniciaSesion.htm">inicia sesion</a>
             </form>
         </nav>
         

@@ -26,22 +26,22 @@
         </nav>
         <br>
         <div class="container">
-            <form>
+            <form action="registrarse.htm" method="POST">
                 <div class="form-group">
                     <label for="nombreEstablecimiento">Nombre</label>
-                    <input type="email" class="form-control" id="nombreEstablecimiento" aria-describedby="emailHelp" placeholder="Introduce el nombre">
+                    <input name="nom_est" class="form-control" id="nombreEstablecimiento" aria-describedby="emailHelp" placeholder="Introduce el nombre">
                 </div>
                 <div class="form-group">
                     <label for="direccionEstablecimiento">Direccion</label>
-                    <input type="email" class="form-control" id="direccionEstablecimiento" aria-describedby="emailHelp" placeholder="Introduce la direccion">
+                    <input name="dir_est" class="form-control" id="direccionEstablecimiento" aria-describedby="emailHelp" placeholder="Introduce la direccion">
                 </div>
                 <div class="form-group">
                     <label for="emailEstablecimiento">Correo electronico</label>
-                    <input type="email" class="form-control" id="emailEstablecimiento" aria-describedby="emailHelp" placeholder="Enter email">
+                    <input name="email_est" type="email" class="form-control" id="emailEstablecimiento" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com">
                 </div>
                 <div class="form-group">
                     <label for="contraseniaEstablecimiento">Password</label>
-                    <input type="password" class="form-control" id="contraseniaEstablecimiento" placeholder="Password">
+                    <input name="pass_est" type="password" class="form-control" id="contraseniaEstablecimiento" placeholder="Password">
                 </div>
                 <button type="submit" class="btn btn-primary">Registrarse</button>
             </form>

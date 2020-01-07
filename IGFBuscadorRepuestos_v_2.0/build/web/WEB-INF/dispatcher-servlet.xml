@@ -22,6 +22,15 @@
                 <!-- Agregar aca siempre los controladores -->
                 <prop key="index.htm">controlador</prop>
                 <prop key="registrarse.htm">controlador</prop>
+                <prop key="iniciaSesion.htm">controlador</prop>
+                <prop key="home.htm">controlador</prop>
+                
+                <prop key="insertarMasivamente.htm">controlador</prop>
+                
+                <prop key="insertarMasivamente.htm">dbcontroller</prop>
+                
+                <prop key="insertarMasivamente_2.htm">dbcontroller</prop>
+                
             </props>
         </property>
     </bean>
@@ -35,5 +44,7 @@
     The index controller.
     -->
     <bean name="controlador" class="Controlador.Controlador"/>
+    
+    <bean name="dbcontroller" class="Controlador.DBServiceController"/>
 
 </beans>

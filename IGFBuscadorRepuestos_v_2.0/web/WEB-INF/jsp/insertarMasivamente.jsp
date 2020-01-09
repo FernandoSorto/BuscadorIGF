@@ -18,26 +18,24 @@
     </head>
     <body>
         <nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark ">
-            <a class="navbar-brand text-light" >Bienvenido ${email_est}!</a>
+            <a class="navbar-brand text-light" >Agregar via conexion con base de datos</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Agregar productos</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Manualmente</a>    
-                            <a class="dropdown-item" href="insertarMasivamente.htm">Masivamente</a>
-                            <!-- <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a> -->
-                        </div>
-                    </li>
-                    
-                </ul>
+                <ul class="navbar-nav mr-auto"></ul>
                 
+                <c:choose>
+                    <c:when test="${rs==null}">
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="history.go(-1)">Regresar</button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-outline-success my-2 my-sm-0" onclick="history.go(-2)">Regresar</button>
+                    </c:otherwise>
+                </c:choose>
+                 
+                <span class="navbar-text mr-sm-2 text-muted">&nbsp o </span>
                 <form class="form-inline my-2 my-lg-0">
                     <a class="btn btn-outline-success my-2 my-sm-0" href="index.htm">Cerrar sesion</a>
                 </form>
@@ -55,16 +53,19 @@
                     <form action="insertarMasivamente.htm" method="POST">
                         <div class="form-group">
                             <label for="emailEstablecimiento">Url de la base mysql</label>
-                            <input name="url_db" class="form-control" id="emailEstablecimiento" aria-describedby="emailHelp" placeholder="">
+                            <input name="url_db" class="form-control" id="emailEstablecimiento" aria-describedby="emailHelp" placeholder="ej. jdbc:mysql://[direccion ip]:[puerto]/[nombre de la base]">
                         </div>  
                         <div class="form-group">
                             <label for="contraseniaEstablecimiento">Usuario</label>
-                            <input name="user_db" class="form-control" id="contraseniaEstablecimiento" placeholder="">
+                            <input name="user_db" class="form-control" id="contraseniaEstablecimiento" placeholder="Nombre del usuario de la base de datos">
                         </div>
                         <div class="form-group">
                             <label for="contraseniaEstablecimiento">Password</label>
-                            <input name="pass_db" type="password" class="form-control" id="contraseniaEstablecimiento" placeholder="Password">
+                            <input name="pass_db" type="password" class="form-control" id="contraseniaEstablecimiento" placeholder="Contrasenia">
                         </div>
+                        
+                        <input name="id_esta"  type="hidden" value="${id_est}">
+                        
                         <button type="submit" class="btn btn-primary">Acceder</button>
                     </form>                   
                 </c:when>
@@ -90,12 +91,13 @@
                         <input type="hidden" name="url_db" value="${url_db}">
                         <input type="hidden" name="user_db" value="${user_db}">
                         <input type="hidden" name="pass_db" value="${pass_db}">
+                        <input name="id_esta"  type="hidden" value="${id_est}">
                         
                         <button type="submit" value="/nombretabla"  class="btn btn-primary">Elegir</button>
                     </form> 
                 </c:otherwise>
             </c:choose>
-        </div>           
-            
+        </div> 
+                       
     </body>
 </html>

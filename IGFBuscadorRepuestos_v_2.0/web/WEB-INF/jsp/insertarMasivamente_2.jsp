@@ -18,42 +18,35 @@
     </head>
     <body>
         <nav class="navbar navbar navbar-expand-lg navbar-dark bg-dark ">
-        <a class="navbar-brand text-light" >Bienvenido ${email_est}!</a>
+        <a class="navbar-brand text-light" >Confirmacion</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Agregar productos</a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Manualmente</a>    
-                        <a class="dropdown-item" href="insertarMasivamente.htm">Masivamente</a>
-                        <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a> -->
-                    </div>
-                </li>
-
-            </ul>
-
+            <ul class="navbar-nav mr-auto"></ul>
+            
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="history.go(-3)">Cancelar</button>
+            <span class="navbar-text mr-sm-2 text-muted">&nbsp o </span>
             <form class="form-inline my-2 my-lg-0">
                 <a class="btn btn-outline-success my-2 my-sm-0" href="index.htm">Cerrar sesion</a>
             </form>
-
-
+            
         </div>
     </nav> 
         
         <div class="container">
             
-            <br>
-            
-            <button class="btn btn-primary">Confirmar</button>
-            <button class="btn btn-secondary"> Cancelar</button>
-            
-            <br><br>
+            <br>         
+            <form action="insertarMasivamente_2.htm" method="post">
+                <button class="btn btn-primary" type="submit" >Confirmar</button>
+                <br><br>
+                <input type="hidden" value="${url_db}" name="url_db">
+                <input type="hidden" value="${user_db}" name="user_db">
+                <input type="hidden" value="${pass_db}" name="pass_db">
+                <input type="hidden" value="${tb_nam}" name="tb_nam">
+                <input type="hidden" value="${id_est}" name="id_esta"  >
+            </form>  
 
             <table class="table table-bordered">
                 <thead class="thead-light">
@@ -64,8 +57,8 @@
                         <th>Numero de chasis</th>
                         <th>Origen</th>
                         <th>Descripcion</th>
-                        <th>Precio</th>
-                        <th> Existencia</th>
+                        <th>Precio($)</th>
+                        <th>Existencia</th>
                     </tr>
                 </thead>
                 <c:forEach var="f" items="${rs}">
@@ -77,11 +70,10 @@
                         <td>${f.origen}</td>
                         <td>${f.descripcion}</td>
                         <td>${f.precio}</td>
+                        <td>${f.existencias}</td>
                     </tr>
                 </c:forEach>
-            </table>
-
-
+            </table>            
         </div>      
     </body>
 </html>

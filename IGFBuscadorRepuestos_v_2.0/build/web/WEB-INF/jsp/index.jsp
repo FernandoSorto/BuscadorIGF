@@ -19,7 +19,7 @@
             <a class="navbar-brand text-light ">Bienvenido al Buscador de Repuestos!</a>
             <form class="form-inline">
                 
-                <span class="navbar-text mr-sm-2 text-muted">Quieres registrar tus repuestos?</span>
+                <span class="navbar-text mr-sm-2 text-muted">Quieres registrar tu establecimiento?</span>
                 <a class="btn btn-outline-success my-2 my-sm-0" href="registrarse.htm">click aca!</a>
                 <span class="navbar-text mr-sm-2 text-muted">&nbsp o </span>
                 <a class="btn btn-outline-success my-2 my-sm-0" href="iniciaSesion.htm">inicia sesion</a>
@@ -48,8 +48,8 @@
                             <th>Numero de chasis</th>
                             <th>Origen</th>
                             <th>Descripcion</th>
-                            <th>Precio</th>
-                            <th></th>
+                            <th>Precio($)</th>
+                            <th>Informacion</th>
                         </tr>
                     </thead>
                     <c:forEach var="f" items="${lista}">
@@ -61,7 +61,11 @@
                             <td>${f.origen}</td>
                             <td>${f.descripcion}</td>
                             <td>${f.precio}</td>
-                            <td><button class="btn btn-primary">Seleccionar</button></td>
+                            
+                        <form action="comparacionRepuesto.htm" >
+                            <td><button type="submit" class="btn btn-primary">Seleccionar</button></td>
+                            <input type="hidden" name="id_rep" value="${f.id_repuesto}">
+                        </form>      
                         </tr>
                     </c:forEach>
                 </table>

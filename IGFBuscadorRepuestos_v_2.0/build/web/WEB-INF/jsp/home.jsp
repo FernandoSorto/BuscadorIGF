@@ -30,10 +30,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Agregar productos</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Manualmente</a>    
-                            <a class="dropdown-item" href="insertarMasivamente.htm">Masivamente</a>
-                            <!-- <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a> -->
+                            <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">Manualmente</a>
+                            
+                            <form action="insertarMasivamente.htm" method="get">
+                                <button class="dropdown-item" type="submit" >Masivamente</button>
+                                <input name="id_esta"  type="hidden" value="${id_est}">
+                            </form>
                         </div>
                     </li>
                     
@@ -45,14 +47,7 @@
                 
                 
             </div>
-        </nav>
-            
-            
-            
-            
-        
-        
-        
+        </nav>       
         <br>
         <div class="container">
             <h1>${mensaje}</h1>
@@ -61,9 +56,7 @@
                 <h2>Tus Repuestos </h2>
             </div>    
             <br>
-            
-            
-            
+        
             <div>
                 <table class="table table-bordered">
                     <thead class="thead-light">
@@ -74,7 +67,9 @@
                             <th>Numero de chasis</th>
                             <th>Origen</th>
                             <th>Descripcion</th>
-                            <th>Precio</th>
+                            <th>Precio($)</th>
+                            <th>Existencias</th>
+                            <th>Modificar</th>
                         </tr>
                     </thead>
                     <c:forEach var="f" items="${lista}">
@@ -86,15 +81,90 @@
                             <td>${f.origen}</td>
                             <td>${f.descripcion}</td>
                             <td>${f.precio}</td>
+                            <td>${f.existencias}</td>
+                            
+                        
+                            <td><button class="btn btn-primary" data-toggle="modal" data-target="#editarModal${f.id_repuesto}">Editar</button></td>
+                            
+                            
+                        
+                <!-- COMIENZO DEL MODAL editar producto -->
+                <div class="modal fade" id="editarModal${f.id_repuesto}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editando repuesto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <form action="home.htm" method="post" >
+                                
+                                <div class="modal-body">  
+                                    <!-- nombre -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Nombre</label>
+                                        <input name="nom_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Digita el nombre del repuesto" value="${f.nombre}">
+                                    </div>
+                                    <!-- marca -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Marca</label>
+                                        <input name="mar_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Digita el nombre del repuesto" value="${f.marca}">
+                                    </div>
+                                    <!-- anio -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Año del repuesto</label>
+                                        <input name="ani_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Formato: YYYY" value="${f.anio}">
+                                    </div>
+                                    <!-- numero_chasis -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Numero de chasis</label>
+                                        <input name="num_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Debe seguir el estandar, y tener 17 caracteres" value="${f.numero_chasis}">
+                                    </div>
+                                    <!-- origen -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Origen</label>
+                                        <input name="ori_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Nombre del pais de origen del repuesto" value="${f.origen}">
+                                    </div>
+                                    <!-- descripcion-->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Descripcion</label>
+                                        <input name="des_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Breve descripcion. Puedes especificar el modelo del auto aca" value="${f.descripcion}">
+                                    </div>
+                                    <!-- precio -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Precio</label>
+                                        <input name="pre_rep"  class="form-control" aria-describedby="emailHelp" placeholder="$ 0.00" value="${f.precio}">
+                                    </div>
+                                    
+                                    <!-- existencias -->
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Existencias</label>
+                                        <input name="exi_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Numero de articulos disponibles" value="${f.existencias}">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit"  class="btn btn-primary">Guardar</button>
+                                </div>
+                                <input name="id_esta"  type="hidden" value="${id_est}">
+                                <input name="email_est" type="hidden" value="${email_est}">
+                                <input name="id_rep" type="hidden" value="${f.id_repuesto}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- FIN DEL MODAL editar producto -->
+                            
+                            
+                            
                         </tr>
                     </c:forEach>
                 </table>
             </div>    
-        </div>
-        
-        
-        <!-- COMIENZO DEL MODAL -->
-                <!-- Modal -->
+        </div>     
+        <!-- COMIENZO DEL MODAL agregar producto -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -110,43 +180,43 @@
                                     <!-- nombre -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Nombre</label>
-                                        <input name="nom_rep"  class="form-control" aria-describedby="emailHelp" placeholder="">
+                                        <input name="nom_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Digita el nombre del repuesto">
                                     </div>
                                     <!-- marca -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Marca</label>
-                                        <input name="mar_rep"  class="form-control" aria-describedby="emailHelp" placeholder="">
+                                        <input name="mar_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Digita el nombre del repuesto">
                                     </div>
                                     <!-- anio -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Año del repuesto</label>
-                                        <input name="ani_rep"  class="form-control" aria-describedby="emailHelp" placeholder="YYYY">
+                                        <input name="ani_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Formato: YYYY">
                                     </div>
                                     <!-- numero_chasis -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Numero de chasis</label>
-                                        <input name="num_rep"  class="form-control" aria-describedby="emailHelp" placeholder="">
+                                        <input name="num_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Debe seguir el estandar, y tener 17 caracteres">
                                     </div>
                                     <!-- origen -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Origen</label>
-                                        <input name="ori_rep"  class="form-control" aria-describedby="emailHelp" placeholder="AAA">
+                                        <input name="ori_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Nombre del pais de origen del repuesto">
                                     </div>
                                     <!-- descripcion-->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Descripcion</label>
-                                        <input name="des_rep"  class="form-control" aria-describedby="emailHelp" placeholder="">
+                                        <input name="des_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Breve descripcion. Puedes especificar el modelo del auto aca">
                                     </div>
                                     <!-- precio -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Precio</label>
-                                        <input name="pre_rep"  class="form-control" aria-describedby="emailHelp" placeholder="$">
+                                        <input name="pre_rep"  class="form-control" aria-describedby="emailHelp" placeholder="$ 0.00">
                                     </div>
                                     
                                     <!-- existencias -->
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Existencias</label>
-                                        <input name="exi_rep"  class="form-control" aria-describedby="emailHelp" placeholder="#">
+                                        <input name="exi_rep"  class="form-control" aria-describedby="emailHelp" placeholder="Numero de articulos disponibles">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -159,6 +229,7 @@
                         </div>
                     </div>
                 </div>
-            <!-- FIN DEL MODAL -->
+            <!-- FIN DEL MODAL agregar producto -->
+            
     </body>
 </html>

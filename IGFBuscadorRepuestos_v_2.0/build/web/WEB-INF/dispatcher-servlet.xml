@@ -23,13 +23,12 @@
                 <prop key="index.htm">controlador</prop>
                 <prop key="registrarse.htm">controlador</prop>
                 <prop key="iniciaSesion.htm">controlador</prop>
-                <prop key="home.htm">controlador</prop>
-                
-                <prop key="insertarMasivamente.htm">controlador</prop>
-                
-                <prop key="insertarMasivamente.htm">dbcontroller</prop>
-                
+                <prop key="home.htm">controlador</prop>                
+                <prop key="insertarMasivamente.htm">controlador</prop>                
+                <prop key="insertarMasivamente.htm">dbcontroller</prop>                
                 <prop key="insertarMasivamente_2.htm">dbcontroller</prop>
+                
+                <prop key="comparacionRepuesto.htm">controlador</prop>
                 
             </props>
         </property>
@@ -40,11 +39,8 @@
           p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp" />
 
-    <!--
-    The index controller.
-    -->
-    <bean name="controlador" class="Controlador.Controlador"/>
     
+    <bean name="controlador" class="Controlador.Controlador"/>    
     <bean name="dbcontroller" class="Controlador.DBServiceController"/>
 
 </beans>
